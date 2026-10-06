@@ -8,7 +8,8 @@
 </head>
 <body>
   <?php
-  $user = ["id" => 2, "name" => "Budi Santoso", "email" => "budi.santoso@siswa.ski.sch.id", "role" => "member"];
+  require '../../repositories/user-repository.php';
+  $users = getUsers();
   ?>
   <div class="app-shell">
   <?php require '../../components/admin/sidebar.php'; ?>
@@ -39,6 +40,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php foreach ($users as $user): ?>
               <tr>
                 <td>
                   <div class="cell-primary">
@@ -57,10 +59,11 @@
                 <td>
                   <div class="cell-actions">
                     <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-outline btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                    <a href="../../actions/users/destroy.php?id=<?= $user['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus pengguna ini?')">Hapus</a>
                   </div>
                 </td>
               </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>

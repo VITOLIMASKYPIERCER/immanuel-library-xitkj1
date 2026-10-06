@@ -8,12 +8,8 @@
 </head>
 <body>
   <?php
-  $user = [
-      "id"    => 2,
-      "name"  => "Budi Santoso",
-      "email" => "budi.santoso@siswa.ski.sch.id",
-      "role"  => "member",
-  ];
+  require '../../repositories/user-repository.php';
+  $user = getUser();
   ?>
   <div class="app-shell">
   <?php require '../../components/admin/sidebar.php'; ?>
@@ -22,7 +18,7 @@
     <?php $pageTitle = 'Edit Pengguna'; $pageSubtitle = 'Perbarui data dan role pengguna'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <form method="" action="">
+        <form method="POST" action="../../actions/users/update.php">
           <input type="hidden" name="id" value="<?= $user['id'] ?>">
           <div class="form-card">
             <div class="form-section-title">Data Pengguna</div>
