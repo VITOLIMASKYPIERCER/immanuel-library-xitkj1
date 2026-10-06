@@ -10,14 +10,8 @@
 
 <body>
   <?php
-  $book = [
-    "id" => 1,
-    "title" => "Laskar Pelangi",
-    "category" => "Fiksi",
-    "year" => 2005,
-    "stock" => 12,
-    "authors" => "Andrea Hirata",
-  ];
+  require '../../repositories/book-repository.php';
+  $books = getBooks();
   ?>
   <div class="app-shell">
     <?php require '../../components/admin/sidebar.php'; ?>
@@ -60,6 +54,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php foreach ($books as $book): ?>
               <tr>
                 <td>
                   <div class="cell-primary">
@@ -74,7 +69,9 @@
                 <td><span class="badge badge-muted"><?= $book['category'] ?></span></td>
                 <td>
                   <div class="chip-list">
-                    <span class="chip"><?= $book['authors'] ?></span>
+                    <?php foreach ((array) $book['authors'] as $authorName): ?>
+                    <span class="chip"><?= $authorName ?></span>
+                    <?php endforeach; ?>
                   </div>
                 </td>
                 <td><?= $book['stock'] ?></td>
@@ -85,6 +82,7 @@
                   </div>
                 </td>
               </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
         </div>
