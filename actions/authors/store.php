@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['tambah_penulis'])) {
+  echo "Akses tidak valid.";
+  return;
+}
 if (isset($_POST['name'], $_POST['bio'])) {
   echo "Penulis baru berhasil diterima:<br>";
   echo "<pre>";

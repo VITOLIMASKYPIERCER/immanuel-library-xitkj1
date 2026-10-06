@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['tambah_pengguna'])) {
+  echo "Akses tidak valid.";
+  return;
+}
 if (isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['role'])) {
   echo "Pengguna baru berhasil diterima:<br>";
   echo "<pre>";

@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_profil'])) {
+  echo "Akses tidak valid.";
+  return;
+}
 if (isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['address'], $_POST['bio'])) {
   echo "Perubahan profil berhasil diterima:<br>";
   echo "<pre>";

@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_penulis'])) {
+  echo "Akses tidak valid.";
+  return;
+}
 if (isset($_POST['id'], $_POST['name'], $_POST['bio'])) {
   echo "Perubahan penulis berhasil diterima:<br>";
   echo "<pre>";
