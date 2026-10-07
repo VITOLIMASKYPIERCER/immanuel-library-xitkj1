@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -94,4 +94,4 @@
   </section>
   <?php require_once 'components/landing/footer.php'; ?>
 </body>
-</html>
+</html> -->
