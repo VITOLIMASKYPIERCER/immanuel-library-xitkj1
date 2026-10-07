@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beranda - Perpustakaan Digital</title>
   <link rel="stylesheet" href="styles/index.css">
 </head>
-
 <body>
   <?php require_once 'components/landing/header.php'; ?>
-
-  <!-- ============ HERO ============ -->
+  <!-- BAGIAN HERO -->
   <section class="hero">
     <div class="hero-text">
       <span class="hero-badge">SISTEM MANAJEMEN PERPUSTAKAAN</span>
@@ -39,7 +36,7 @@
     </div>
   </section>
 
-  <!-- ============ STATISTIK & FITUR ============ -->
+  <!-- BAGIAN STATISTIK DAN FITUR -->
   <section class="section">
     <div class="stats-grid">
       <div class="stat-card">
@@ -59,7 +56,6 @@
         <div class="stat-label">Anggota Aktif</div>
       </div>
     </div>
-
     <div class="section-title">
       <h2>Kenapa Pakai Perpustakaan Digital?</h2>
       <p>Fitur inti yang akan kita bangun bertahap sepanjang semester ini.</p>
@@ -98,5 +94,4 @@
   </section>
   <?php require_once 'components/landing/footer.php'; ?>
 </body>
-
 </html>
