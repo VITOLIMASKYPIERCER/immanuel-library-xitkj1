@@ -1,3 +1,4 @@
+<!-- Halaman kelola buku: tabel seluruh koleksi dengan kolom cari, filter kategori, serta tombol tambah buku -->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -10,6 +11,8 @@
 
 <body>
   <?php
+  // Halaman daftar seluruh buku dalam bentuk tabel manajemen koleksi
+  // Data buku dimuat dari getBooks() agar tabel langsung terisi saat halaman dibuka
   require '../../repositories/book-repository.php';
   $books = getBooks();
   ?>
@@ -20,6 +23,7 @@
       <?php $pageTitle = 'Manajemen Buku'; $pageSubtitle = 'Kelola data buku, kategori, dan penulis'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- Bilah alat di atas tabel: kolom pencarian judul, filter kategori, tombol Cari, dan tombol Tambah Buku -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -43,6 +47,7 @@
         </div>
 
         <div class="data-card">
+          <!-- Tabel daftar buku: kolom judul, kategori, penulis, stok, dan tombol aksi Edit serta Hapus -->
           <table class="data-table">
             <thead>
               <tr>
@@ -54,6 +59,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php // Data dari getBooks() di-loop menjadi baris tabel, tiap buku satu baris berisi judul, kategori, dan stok ?>
               <?php foreach ($books as $book): ?>
               <tr>
                 <td>
@@ -69,6 +75,7 @@
                 <td><span class="badge badge-muted"><?= $book['category'] ?></span></td>
                 <td>
                   <div class="chip-list">
+                    <?php // Daftar penulis tiap buku di-loop menjadi chip nama, satu chip untuk satu penulis ?>
                     <?php foreach ((array) $book['authors'] as $authorName): ?>
                     <span class="chip"><?= $authorName ?></span>
                     <?php endforeach; ?>

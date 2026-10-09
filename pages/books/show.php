@@ -1,3 +1,4 @@
+<!-- Halaman detail satu buku: menampilkan sampul, judul, ISBN, tahun, kategori, penulis, stok, dan deskripsi -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman detail satu buku berdasarkan ID yang dipilih dari daftar
+  // Data buku dimuat dari getBook() berisi judul, ISBN, kategori, penulis, dan stok
   require '../../repositories/book-repository.php';
   $book = getBook();
   ?>
@@ -18,6 +21,7 @@
     <?php $pageTitle = 'Detail Buku'; $pageSubtitle = 'Informasi lengkap buku beserta kategori dan penulis'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- Kartu ringkasan buku: sampul di kiri, detail kategori, penulis, stok, deskripsi, tombol Kembali dan Edit -->
         <div class="detail-grid">
           <div class="detail-cover"><svg class="icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
           <div class="detail-card">
@@ -32,6 +36,7 @@
               <div class="detail-label">Penulis</div>
               <div class="detail-value">
                 <div class="chip-list">
+                  <?php // Daftar penulis pada detail buku di-loop menjadi chip nama, satu chip untuk tiap penulis ?>
                   <?php foreach ($book['authors'] as $authorName): ?>
                     <span class="chip"><?= $authorName ?></span>
                   <?php endforeach; ?>

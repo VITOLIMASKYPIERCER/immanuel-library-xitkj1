@@ -1,3 +1,4 @@
+<!-- Halaman tambah buku: form judul, ISBN, tahun, stok, kategori, deskripsi, dan pilihan penulis ke actions/books/store.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman form tambah buku baru dengan field kosong siap diisi
+  // Daftar kategori dan penulis dimuat dari getCategories() dan getAuthors() untuk dropdown dan checkbox
   require '../../repositories/category-repository.php';
   require '../../repositories/author-repository.php';
   $categories = getCategories();
@@ -20,6 +23,7 @@
     <?php $pageTitle = 'Tambah Buku'; $pageSubtitle = 'Lengkapi data buku, kategori, dan penulis'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- Form dikirim ke actions/books/store.php: bagian atas data buku, bawah pilihan penulis, tombol Batal dan Simpan Buku -->
         <form method="POST" action="../../actions/books/store.php">
           <div class="form-card" style="margin-bottom:20px;">
             <div class="form-section-title">Data Buku</div>
@@ -45,6 +49,7 @@
               <div class="form-group">
                 <label for="category_id">Kategori</label>
                 <select id="category_id" name="category_id">
+                  <?php // Data kategori dari getCategories() di-loop menjadi opsi dropdown, tiap baris satu pilihan kategori ?>
                   <?php foreach ($categories as $category): ?>
                     <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                   <?php endforeach; ?>
@@ -62,6 +67,7 @@
             <div class="form-group">
               <label>Pilih Penulis (bisa lebih dari satu)</label>
               <div class="checkbox-grid">
+                <?php // Data penulis dari getAuthors() di-loop menjadi checkbox, tiap label satu penulis yang bisa dipilih banyak ?>
                 <?php foreach ($authors as $author): ?>
                   <label class="checkbox-item">
                     <input type="checkbox" name="author_ids[]" value="<?= $author['id'] ?>">
