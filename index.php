@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
+  <!-- Beranda publik, memuat header landing tepat di bawah baris ini -->
   <?php require_once 'components/landing/header.php'; ?>
-  <!-- BAGIAN HERO -->
+  <!-- Bagian hero: judul utama dengan 2 tombol menuju halaman login dan katalog buku -->
   <section class="hero">
     <div class="hero-text">
       <span class="hero-badge">SISTEM MANAJEMEN PERPUSTAKAAN</span>
@@ -36,7 +37,7 @@
     </div>
   </section>
 
-  <!-- BAGIAN STATISTIK DAN FITUR -->
+  <!-- Bagian statistik: 4 angka ringkasan koleksi, dilanjut 3 kartu penjelasan fitur utama -->
   <section class="section">
     <div class="stats-grid">
       <div class="stat-card">
@@ -92,6 +93,7 @@
       </div>
     </div>
   </section>
+  <!-- Penutup beranda, memuat footer landing tepat di bawah baris ini -->
   <?php require_once 'components/landing/footer.php'; ?>
 </body>
 </html>
