@@ -1,4 +1,4 @@
-<!-- Halaman daftar pengguna: tabel seluruh akun dengan pencarian nama/email dan tombol tambah pengguna -->
+<!-- VITO: daftar pengguna, tabel akun plus cari dan tambah -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,10 +9,11 @@
 </head>
 <body>
   <?php
-  // Halaman daftar seluruh pengguna beserta perannya
-  // Data pengguna dimuat dari getUsers() agar tabel terisi saat halaman dibuka
-  require '../../repositories/user-repository.php';
-  $users = getUsers();
+  // VITO: muat semua pengguna dari repo untuk tabel.
+  // VITO: helpers dipakai untuk e() setiap cetak nama dan surel.
+  require_once '../../repositories/user-repository.php';
+  require_once '../../repositories/helpers.php';
+  $koleksi = getUsers();
   ?>
   <div class="app-shell">
   <?php require '../../components/admin/sidebar.php'; ?>
@@ -21,7 +22,7 @@
     <?php $pageTitle = 'Manajemen Pengguna'; $pageSubtitle = 'Daftar seluruh pengguna beserta perannya (role)'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- Bilah alat pengguna: kolom pencarian nama atau email, tombol Cari, dan tombol Tambah Pengguna -->
+        <!-- VITO: bilah alat berisi cari nama surel dan tambah pengguna -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -34,7 +35,7 @@
         </div>
 
         <div class="data-card">
-          <!-- daftar akunnya dibikin tabel biar jelas siapa admin siapa member -->
+          <!-- VITO: tabel akun berisi nama, surel, peran, dan aksi -->
           <table class="data-table">
             <thead>
               <tr>
@@ -45,18 +46,18 @@
               </tr>
             </thead>
             <tbody>
-              <?php // Data dari getUsers() di-loop menjadi baris tabel, tiap pengguna satu baris berisi nama dan peran ?>
-              <?php foreach ($users as $user): ?>
+              <?php // VITO: koleksi di-loop foreach jadi baris tabel ?>
+              <?php foreach ($koleksi as $akun): ?>
               <tr>
                 <td>
                   <div class="cell-primary">
                     <span class="cell-thumb"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 19.5v-1a4.5 4.5 0 0 0-4.5-4.5h-5A4.5 4.5 0 0 0 5 18.5v1"/><circle cx="12" cy="7.5" r="4"/></svg></span>
-                    <?= $user['name'] ?>
+                    <?= e($akun['nama']) ?>
                   </div>
                 </td>
-                <td><?= $user['email'] ?></td>
+                <td><?= e($akun['surel']) ?></td>
                 <td>
-                  <?php if ($user['role'] === 'admin'): ?>
+                  <?php if ($akun['peran'] === 'admin'): ?>
                     <span class="badge badge-admin">Admin</span>
                   <?php else: ?>
                     <span class="badge badge-member">Member</span>
@@ -64,8 +65,8 @@
                 </td>
                 <td>
                   <div class="cell-actions">
-                    <a href="edit.php?id=<?= $user['id'] ?>" class="btn btn-outline btn-sm">Edit</a>
-                    <a href="../../actions/users/destroy.php?id=<?= $user['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus pengguna ini?')">Hapus</a>
+                    <a href="edit.php?id=<?= e($akun['id']) ?>" class="btn btn-outline btn-sm">Edit</a>
+                    <a href="../../actions/users/destroy.php?id=<?= e($akun['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus pengguna ini?')">Hapus</a>
                   </div>
                 </td>
               </tr>

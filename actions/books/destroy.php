@@ -1,9 +1,14 @@
 <?php
-// File ini memproses hapus buku, menerima nomor identitas buku dari tautan hapus di daftar buku
-// Nomor identitas wajib terbawa lewat alamat URL, jika tidak ada maka ditampilkan pesan identitas tidak ditemukan
-if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  echo "Buku dengan id " . htmlspecialchars($id) . " berhasil dihapus.";
-} else {
-  echo "ID buku tidak ditemukan.";
+// VITO: hapus buku by id via query string.
+// Dibuka via GET dari pages/books/index.php tombol Hapus.
+// Ambil id pakai get(), tampilkan pesan dengan e() agar aman.
+require_once __DIR__ . '/../../repositories/helpers.php';
+$id = get('id');
+switch (true)
+{
+  case $id === null:
+    echo 'ID buku tidak ditemukan.';
+    break;
+  default:
+    echo 'Buku dengan id ' . e($id) . ' berhasil dihapus.';
 }

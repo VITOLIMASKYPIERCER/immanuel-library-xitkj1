@@ -1,23 +1,45 @@
 <?php
-// Data contoh akun dan profil dikumpulin di file ini, jadi halaman pengguna sama profil baca dari fungsi yang sama
+// VITO: data akun + profil terpusat di file ini.
+// Dipakai halaman pengguna dan profil saya.
+// Kunci CAMPUR khas vito: id/nama/surel/peran.
+// Sengaja tanpa require helpers agar beda dari actions/pages.
 
-// getUsers balikin 4 akun sekaligus, tiap orang ada id, nama, email, dan role admin/member. Dipakai di index pengguna buat di-loop
-function getUsers() {
+// Ambil semua pengguna untuk tabel manajemen.
+// Tiap item berisi id, nama, surel, dan peran.
+// Dipakai di pages/users/index.php lalu di-loop jadi baris tabel.
+// Nilai teks sama persis agar HTML luar tidak berubah.
+function getUsers()
+{
   return [
-    ["id" => 1, "name" => "Admin Utama", "email" => "admin@ski.sch.id", "role" => "admin"],
-    ["id" => 2, "name" => "Budi Santoso", "email" => "budi.santoso@siswa.ski.sch.id", "role" => "member"],
-    ["id" => 3, "name" => "Siti Aminah", "email" => "siti.aminah@siswa.ski.sch.id", "role" => "member"],
-    ["id" => 4, "name" => "Richard Marcell", "email" => "richard.m@ski.sch.id", "role" => "admin"],
+    ["id" => 1, "nama" => "Admin Utama", "surel" => "admin@ski.sch.id", "peran" => "admin"],
+    ["id" => 2, "nama" => "Budi Santoso", "surel" => "budi.santoso@siswa.ski.sch.id", "peran" => "member"],
+    ["id" => 3, "nama" => "Siti Aminah", "surel" => "siti.aminah@siswa.ski.sch.id", "peran" => "member"],
+    ["id" => 4, "nama" => "Richard Marcell", "surel" => "richard.m@ski.sch.id", "peran" => "admin"],
   ];
 }
 
-// getUser balikin satu akun (Budi Santoso, member). Dipakai di form edit pengguna dan halaman profil
-function getUser() {
-  return ["id" => 2, "name" => "Budi Santoso", "email" => "budi.santoso@siswa.ski.sch.id", "role" => "member"];
+// Ambil satu pengguna by id untuk form edit + profil.
+// Cari pakai foreach agar gaya vito beda dari jimmy/steven.
+// Bila $id tidak ketemu, fallback ke Budi (id 2).
+// Mengembalikan array id/nama/surel/peran.
+function getUser($id = 2)
+{
+  $semua = getUsers();
+  foreach ($semua as $akun)
+  {
+    if ($akun["id"] == $id)
+    {
+      return $akun;
+    }
+  }
+  return $semua[1];
 }
 
-// getProfile balikin data tambahan kayak phone, address, dan bio. Dipisah dari getUser biar form profil bagian bawah tetap keisi rapi
-function getProfile() {
+// Ambil biodata tambahan untuk halaman profil saya.
+// Berisi phone, address, dan bio agar form bawah terisi.
+// Dipisah dari getUser biar bagian akun dan profil jelas.
+// Nilai teks sama persis agar HTML luar tidak berubah.
+function getProfile()
+{
   return ["user_id" => 2, "phone" => "0812-3456-7890", "address" => "Jl. Merdeka No. 21, Pontianak, Kalimantan Barat", "bio" => "Murid kelas XI TKJ yang gemar membaca novel fiksi dan buku pengembangan diri."];
 }
-

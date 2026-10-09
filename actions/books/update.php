@@ -1,26 +1,23 @@
 <?php
-// File ini menangani perubahan data buku, menerima kiriman form Ubah Buku dari halaman daftar buku
-// Request harus memakai metode POST beserta penanda ubah_buku, selain itu akses dianggap tidak sah
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_buku'])) {
-  echo "Akses tidak valid.";
-  return;
-}
-// Nomor identitas beserta seluruh kolom buku wajib tersedia lengkap sebelum hasilnya disusun dan diperlihatkan kembali sebagai konfirmasi
-if (isset($_POST['id'], $_POST['title'], $_POST['isbn'], $_POST['year'], $_POST['stock'], $_POST['category_id'], $_POST['description'])) {
-  $data = [
-    'id' => $_POST['id'],
-    'title' => $_POST['title'],
-    'isbn' => $_POST['isbn'],
-    'year' => $_POST['year'],
-    'stock' => $_POST['stock'],
-    'category_id' => $_POST['category_id'],
-    'description' => $_POST['description'],
-    'author_ids' => isset($_POST['author_ids']) ? $_POST['author_ids'] : [],
-  ];
-  echo "Perubahan buku berhasil diterima:<br>";
-  echo "<pre>";
-  print_r($data);
-  echo "</pre>";
-} else {
-  echo "Data buku tidak lengkap.";
+// VITO: terima form ubah buku.
+// Dibuka hanya via POST dari pages/books/edit.php.
+// Tombol wajib: perbarui_buku. Selain itu tolak sebagai akses tidak valid.
+require_once __DIR__ . '/../../repositories/helpers.php';
+switch (true)
+{
+  case $_SERVER['REQUEST_METHOD'] !== 'POST':
+  case !isset($_POST['perbarui_buku']):
+    echo 'Akses tidak valid.';
+    break;
+  default:
+    $data = ['id' => post('id'), 'title' => post('title'), 'isbn' => post('isbn'), 'year' => post('year'), 'stock' => post('stock'), 'category_id' => post('category_id'), 'description' => post('description'), 'author_ids' => post('author_ids')];
+    switch (true)
+    {
+      case in_array(null, $data, true):
+        echo 'Data buku tidak lengkap.';
+        break;
+      default:
+        echo 'Perubahan buku berhasil diterima:<br>';
+        print_r($data);
+    }
 }

@@ -1,16 +1,23 @@
 <?php
-// File ini menangani pembaruan akun pengguna, menerima kiriman form Ubah Pengguna dari daftar pengguna
-// Request wajib memakai metode POST dengan penanda ubah_pengguna, bila tidak sesuai akses dianggap tidak sah
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_pengguna'])) {
-  echo "Akses tidak valid.";
-  return;
-}
-// Nomor identitas beserta nama, surel, dan peran wajib tersedia lengkap sebelum perubahannya diperlihatkan kembali sebagai konfirmasi
-if (isset($_POST['id'], $_POST['name'], $_POST['email'], $_POST['role'])) {
-  echo "Perubahan pengguna berhasil diterima:<br>";
-  echo "<pre>";
-  print_r(['id' => $_POST['id'], 'name' => $_POST['name'], 'email' => $_POST['email'], 'role' => $_POST['role']]);
-  echo "</pre>";
-} else {
-  echo "Data pengguna tidak lengkap.";
+// VITO: terima form ubah pengguna.
+// Dibuka hanya via POST dari pages/users/edit.php.
+// Tombol wajib: perbarui_pengguna. Selain itu tolak sebagai akses tidak valid.
+require_once __DIR__ . '/../../repositories/helpers.php';
+switch (true)
+{
+  case $_SERVER['REQUEST_METHOD'] !== 'POST':
+  case !isset($_POST['perbarui_pengguna']):
+    echo 'Akses tidak valid.';
+    break;
+  default:
+    $data = ['id' => post('id'), 'name' => post('name'), 'email' => post('email'), 'role' => post('role')];
+    switch (true)
+    {
+      case in_array(null, $data, true):
+        echo 'Data pengguna tidak lengkap.';
+        break;
+      default:
+        echo 'Perubahan pengguna berhasil diterima:<br>';
+        print_r($data);
+    }
 }

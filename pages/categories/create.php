@@ -1,4 +1,4 @@
-<!-- Halaman tambah kategori baru: form nama dan deskripsi yang dikirim ke actions/categories/store.php -->
+<!-- VITO: tambah kategori, form nama dan deskripsi ke store -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,15 +8,17 @@
   <link rel="stylesheet" href="../../styles/categories/create.css">
 </head>
 <body>
+  <?php // VITO: helpers untuk e() di topbar ?>
+  <?php require_once '../../repositories/helpers.php'; ?>
   <div class="app-shell">
-  <?php // Sidebar admin dimuat sebagai menu navigasi samping halaman ini ?>
+  <?php // VITO: menu samping admin untuk halaman tambah kategori ?>
   <?php require '../../components/admin/sidebar.php'; ?>
 
     <main class="app-main">
     <?php $pageTitle = 'Tambah Kategori'; $pageSubtitle = 'Buat kategori baru untuk mengelompokkan buku'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- form kecil buat nambah kategori, dua kolom doang -->
+        <!-- VITO: form kirim ke store, tombol batal dan simpan kategori -->
         <form method="POST" action="../../actions/categories/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Kategori</div>
@@ -31,7 +33,7 @@
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" name="tambah_kategori" class="btn btn-primary">Simpan Kategori</button>
+              <button type="submit" name="simpan_kategori" class="btn btn-primary">Simpan Kategori</button>
             </div>
           </div>
         </form>

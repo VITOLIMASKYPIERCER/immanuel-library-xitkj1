@@ -1,4 +1,4 @@
-<!-- Halaman tambah penulis baru: form nama dan biografi yang dikirim ke actions/authors/store.php -->
+<!-- VITO: tambah penulis, form nama dan bio ke store -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,15 +8,17 @@
   <link rel="stylesheet" href="../../styles/authors/create.css">
 </head>
 <body>
+  <?php // VITO: helpers untuk e() di topbar ?>
+  <?php require_once '../../repositories/helpers.php'; ?>
   <div class="app-shell">
-  <?php // Sidebar admin dimuat sebagai menu navigasi samping halaman ini ?>
+  <?php // VITO: menu samping admin untuk halaman tambah penulis ?>
   <?php require '../../components/admin/sidebar.php'; ?>
 
     <main class="app-main">
     <?php $pageTitle = 'Tambah Penulis'; $pageSubtitle = 'Daftarkan penulis baru ke sistem'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- form nambah penulis, isi nama sama bio terus simpen -->
+        <!-- VITO: form kirim ke store, tombol batal dan simpan penulis -->
         <form method="POST" action="../../actions/authors/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Penulis</div>
@@ -30,7 +32,7 @@
             </div>
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" name="tambah_penulis" class="btn btn-primary">Simpan Penulis</button>
+              <button type="submit" name="simpan_penulis" class="btn btn-primary">Simpan Penulis</button>
             </div>
           </div>
         </form>

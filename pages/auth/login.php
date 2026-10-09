@@ -1,4 +1,4 @@
-<!-- Halaman masuk akun: form email dan kata sandi untuk autentikasi, tautan ke halaman daftar -->
+<!-- VITO: masuk akun, form surel dan sandi plus tautan daftar -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -10,7 +10,7 @@
 <body>
 
   <div class="auth-wrapper">
-    <!-- kartu loginnya, dibungkus rapi biar fokus -->
+    <!-- VITO: kartu login di tengah layar dengan logo dan judul -->
     <div class="auth-card">
       <div class="auth-logo">
         <span class="logo-badge">PD</span>
@@ -19,7 +19,7 @@
       <h1>Selamat Datang Kembali</h1>
       <p class="auth-subtitle">Masuk untuk mengelola koleksi buku perpustakaan.</p>
 
-      <!-- kolom email sama sandi, isi terus pencet masuk -->
+      <!-- VITO: kolom surel dan sandi lalu tombol masuk -->
       <form method="" action="">
         <div class="form-group">
           <label for="email">Email</label>

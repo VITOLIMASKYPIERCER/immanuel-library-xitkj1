@@ -1,16 +1,23 @@
 <?php
-// File ini mengurus perubahan kategori, menerima kiriman form Ubah Kategori dari daftar kategori
-// Request harus memakai metode POST dengan penanda ubah_kategori, jika tidak sesuai maka akses dianggap tidak sah
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_kategori'])) {
-  echo "Akses tidak valid.";
-  return;
-}
-// Nomor identitas beserta nama dan keterangan wajib lengkap sebelum hasilnya disusun dan ditampilkan sebagai konfirmasi
-if (isset($_POST['id'], $_POST['name'], $_POST['description'])) {
-  echo "Perubahan kategori berhasil diterima:<br>";
-  echo "<pre>";
-  print_r(['id' => $_POST['id'], 'name' => $_POST['name'], 'description' => $_POST['description']]);
-  echo "</pre>";
-} else {
-  echo "Data kategori tidak lengkap.";
+// VITO: terima form ubah kategori.
+// Dibuka hanya via POST dari pages/categories/edit.php.
+// Tombol wajib: perbarui_kategori. Selain itu tolak sebagai akses tidak valid.
+require_once __DIR__ . '/../../repositories/helpers.php';
+switch (true)
+{
+  case $_SERVER['REQUEST_METHOD'] !== 'POST':
+  case !isset($_POST['perbarui_kategori']):
+    echo 'Akses tidak valid.';
+    break;
+  default:
+    $data = ['id' => post('id'), 'name' => post('name'), 'description' => post('description')];
+    switch (true)
+    {
+      case in_array(null, $data, true):
+        echo 'Data kategori tidak lengkap.';
+        break;
+      default:
+        echo 'Perubahan kategori berhasil diterima:<br>';
+        print_r($data);
+    }
 }

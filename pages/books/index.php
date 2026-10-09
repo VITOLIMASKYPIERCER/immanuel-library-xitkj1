@@ -1,4 +1,4 @@
-<!-- Halaman kelola buku: tabel seluruh koleksi dengan kolom cari, filter kategori, serta tombol tambah buku -->
+<!-- VITO: kelola buku, tabel koleksi plus cari, filter, dan tambah -->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -11,10 +11,12 @@
 
 <body>
   <?php
-  // Halaman daftar seluruh buku dalam bentuk tabel manajemen koleksi
-  // Data buku dimuat dari getBooks() agar tabel langsung terisi saat halaman dibuka
-  require '../../repositories/book-repository.php';
-  $books = getBooks();
+  // VITO: muat data buku dari repo lalu siapkan untuk tabel.
+  // VITO: helpers dipakai untuk e() saat cetak nama dan kategori.
+  require_once '../../repositories/book-repository.php';
+  require_once '../../repositories/helpers.php';
+  require_once '../../components/admin/book-row.php';
+  $koleksi = getBooks();
   ?>
   <div class="app-shell">
     <?php require '../../components/admin/sidebar.php'; ?>
@@ -23,7 +25,7 @@
       <?php $pageTitle = 'Manajemen Buku'; $pageSubtitle = 'Kelola data buku, kategori, dan penulis'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- Bilah alat di atas tabel: kolom pencarian judul, filter kategori, tombol Cari, dan tombol Tambah Buku -->
+        <!-- VITO: bilah alat berisi cari judul, filter kategori, dan tambah buku -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -47,7 +49,7 @@
         </div>
 
         <div class="data-card">
-          <!-- Tabel daftar buku: kolom judul, kategori, penulis, stok, dan tombol aksi Edit serta Hapus -->
+          <!-- VITO: tabel buku berisi judul, kategori, penulis, stok, dan aksi -->
           <table class="data-table">
             <thead>
               <tr>
@@ -59,36 +61,9 @@
               </tr>
             </thead>
             <tbody>
-              <?php // Data dari getBooks() di-loop menjadi baris tabel, tiap buku satu baris berisi judul, kategori, dan stok ?>
-              <?php foreach ($books as $book): ?>
-              <tr>
-                <td>
-                  <div class="cell-primary">
-                    <span class="cell-thumb"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
-                      </svg></span>
-                    <a href="show.php?id=<?= $book['id'] ?>" style="color:inherit;"><?= $book['title'] ?></a>
-                  </div>
-                </td>
-                <td><span class="badge badge-muted"><?= $book['category'] ?></span></td>
-                <td>
-                  <div class="chip-list">
-                    <?php // Daftar penulis tiap buku di-loop menjadi chip nama, satu chip untuk satu penulis ?>
-                    <?php foreach ((array) $book['authors'] as $authorName): ?>
-                    <span class="chip"><?= $authorName ?></span>
-                    <?php endforeach; ?>
-                  </div>
-                </td>
-                <td><?= $book['stock'] ?></td>
-                <td>
-                  <div class="cell-actions">
-                    <a href="edit.php?id=<?= $book['id'] ?>" class="btn btn-outline btn-sm">Edit</a>
-                    <a href="../../actions/books/destroy.php?id=<?= $book['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus buku ini?')">Hapus</a>
-                  </div>
-                </td>
-              </tr>
+              <?php // VITO: tiap buku dicetak lewat renderBookRow agar baris konsisten ?>
+              <?php foreach ($koleksi as $buku): ?>
+              <?= renderBookRow($buku) ?>
               <?php endforeach; ?>
             </tbody>
           </table>

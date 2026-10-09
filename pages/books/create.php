@@ -1,4 +1,4 @@
-<!-- Halaman tambah buku: form judul, ISBN, tahun, stok, kategori, deskripsi, dan pilihan penulis ke actions/books/store.php -->
+<!-- VITO: tambah buku, isi judul ISBN tahun stok kategori deskripsi dan penulis -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,12 +9,13 @@
 </head>
 <body>
   <?php
-  // Halaman form tambah buku baru dengan field kosong siap diisi
-  // Daftar kategori dan penulis dimuat dari getCategories() dan getAuthors() untuk dropdown dan checkbox
-  require '../../repositories/category-repository.php';
-  require '../../repositories/author-repository.php';
-  $categories = getCategories();
-  $authors = getAuthors();
+  // VITO: siapkan dropdown kategori dan checkbox penulis untuk form.
+  // VITO: helpers dipakai untuk e() saat cetak opsi dan label.
+  require_once '../../repositories/category-repository.php';
+  require_once '../../repositories/author-repository.php';
+  require_once '../../repositories/helpers.php';
+  $koleksi = getCategories();
+  $koleksiPenulis = getAuthors();
   ?>
   <div class="app-shell">
   <?php require '../../components/admin/sidebar.php'; ?>
@@ -23,7 +24,7 @@
     <?php $pageTitle = 'Tambah Buku'; $pageSubtitle = 'Lengkapi data buku, kategori, dan penulis'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- Form dikirim ke actions/books/store.php: bagian atas data buku, bawah pilihan penulis, tombol Batal dan Simpan Buku -->
+        <!-- VITO: form atas data buku, bawah pilih penulis, kirim ke store -->
         <form method="POST" action="../../actions/books/store.php">
           <div class="form-card" style="margin-bottom:20px;">
             <div class="form-section-title">Data Buku</div>
@@ -49,9 +50,9 @@
               <div class="form-group">
                 <label for="category_id">Kategori</label>
                 <select id="category_id" name="category_id">
-                  <?php // Data kategori dari getCategories() di-loop menjadi opsi dropdown, tiap baris satu pilihan kategori ?>
-                  <?php foreach ($categories as $category): ?>
-                    <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                  <?php // VITO: daftar kategori di-loop jadi opsi dropdown ?>
+                  <?php foreach ($koleksi as $kategori): ?>
+                    <option value="<?= e($kategori['id']) ?>"><?= e($kategori['nama']) ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -67,11 +68,11 @@
             <div class="form-group">
               <label>Pilih Penulis (bisa lebih dari satu)</label>
               <div class="checkbox-grid">
-                <?php // Data penulis dari getAuthors() di-loop menjadi checkbox, tiap label satu penulis yang bisa dipilih banyak ?>
-                <?php foreach ($authors as $author): ?>
+                <?php // VITO: daftar penulis di-loop jadi checkbox banyak pilihan ?>
+                <?php foreach ($koleksiPenulis as $penulis): ?>
                   <label class="checkbox-item">
-                    <input type="checkbox" name="author_ids[]" value="<?= $author['id'] ?>">
-                    <?= $author['name'] ?>
+                    <input type="checkbox" name="author_ids[]" value="<?= e($penulis['id']) ?>">
+                    <?= e($penulis['nama']) ?>
                   </label>
                 <?php endforeach; ?>
               </div>
@@ -79,7 +80,7 @@
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" name="tambah_buku" class="btn btn-primary">Simpan Buku</button>
+              <button type="submit" name="simpan_buku" class="btn btn-primary">Simpan Buku</button>
             </div>
           </div>
         </form>

@@ -1,4 +1,4 @@
-<!-- Halaman daftar kategori: tabel seluruh kategori dengan pencarian nama dan tombol tambah kategori -->
+<!-- VITO: daftar kategori, tabel plus cari dan tambah -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,10 +9,11 @@
 </head>
 <body>
   <?php
-  // Halaman daftar kategori untuk pengelompokan buku
-  // Data kategori dimuat dari getCategories() agar tabel terisi saat halaman dibuka
-  require '../../repositories/category-repository.php';
-  $categories = getCategories();
+  // VITO: muat semua kategori dari repo untuk tabel.
+  // VITO: helpers dipakai untuk e() setiap cetak nama dan angka.
+  require_once '../../repositories/category-repository.php';
+  require_once '../../repositories/helpers.php';
+  $koleksi = getCategories();
   ?>
   <div class="app-shell">
   <?php require '../../components/admin/sidebar.php'; ?>
@@ -21,7 +22,7 @@
     <?php $pageTitle = 'Manajemen Kategori'; $pageSubtitle = 'Kelola kategori untuk mengelompokkan buku'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- Bilah alat kategori: kolom pencarian nama, tombol Cari, dan tombol Tambah Kategori -->
+        <!-- VITO: bilah alat berisi cari nama dan tambah kategori -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -34,7 +35,7 @@
         </div>
 
         <div class="data-card">
-          <!-- Tabel kategori: kolom nama, deskripsi, jumlah buku, dan tombol aksi Edit serta Hapus -->
+          <!-- VITO: tabel kategori berisi nama, deskripsi, jumlah, dan aksi -->
           <table class="data-table">
             <thead>
               <tr>
@@ -45,21 +46,21 @@
               </tr>
             </thead>
             <tbody>
-              <?php // Data dari getCategories() di-loop menjadi baris tabel, tiap kategori satu baris berisi nama dan jumlah buku ?>
-              <?php foreach ($categories as $category): ?>
+              <?php // VITO: koleksi di-loop foreach jadi baris tabel ?>
+              <?php foreach ($koleksi as $kategori): ?>
               <tr>
                 <td>
                   <div class="cell-primary">
                     <span class="cell-thumb"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></span>
-                    <?= $category['name'] ?>
+                    <?= e($kategori['nama']) ?>
                   </div>
                 </td>
-                <td><?= $category['description'] ?></td>
-                <td><span class="badge badge-muted"><?= $category['total_books'] ?> buku</span></td>
+                <td><?= e($kategori['deskripsi']) ?></td>
+                <td><span class="badge badge-muted"><?= e($kategori['jml_buku']) ?> buku</span></td>
                 <td>
                   <div class="cell-actions">
-                    <a href="edit.php?id=<?= $category['id'] ?>" class="btn btn-outline btn-sm">Edit</a>
-                    <a href="../../actions/categories/destroy.php?id=<?= $category['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus kategori ini?')">Hapus</a>
+                    <a href="edit.php?id=<?= e($kategori['id']) ?>" class="btn btn-outline btn-sm">Edit</a>
+                    <a href="../../actions/categories/destroy.php?id=<?= e($kategori['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus kategori ini?')">Hapus</a>
                   </div>
                 </td>
               </tr>

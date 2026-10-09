@@ -1,4 +1,4 @@
-<!-- Halaman tambah pengguna baru: form nama, email, kata sandi, dan peran ke actions/users/store.php -->
+<!-- VITO: tambah pengguna, form nama surel sandi peran ke store -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,15 +8,17 @@
   <link rel="stylesheet" href="../../styles/users/create.css">
 </head>
 <body>
+  <?php // VITO: helpers untuk e() di topbar ?>
+  <?php require_once '../../repositories/helpers.php'; ?>
   <div class="app-shell">
-  <?php // Sidebar admin dimuat sebagai menu navigasi samping halaman ini ?>
+  <?php // VITO: menu samping admin untuk halaman tambah pengguna ?>
   <?php require '../../components/admin/sidebar.php'; ?>
 
     <main class="app-main">
     <?php $pageTitle = 'Tambah Pengguna'; $pageSubtitle = 'Buat akun pengguna baru beserta perannya'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- form bikin akun baru, lengkapin terus gas simpen -->
+        <!-- VITO: form kirim ke store, tombol batal dan simpan pengguna -->
         <form method="POST" action="../../actions/users/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Pengguna</div>
@@ -46,7 +48,7 @@
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" name="tambah_pengguna" class="btn btn-primary">Simpan Pengguna</button>
+              <button type="submit" name="simpan_pengguna" class="btn btn-primary">Simpan Pengguna</button>
             </div>
           </div>
         </form>

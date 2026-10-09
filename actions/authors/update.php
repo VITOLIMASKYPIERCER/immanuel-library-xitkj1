@@ -1,16 +1,23 @@
 <?php
-// File ini mengurus pembaruan data penulis, menerima kiriman form Ubah Penulis dari daftar penulis
-// Request wajib berjenis POST dengan penanda ubah_penulis, bila tidak sesuai maka akses dianggap tidak sah
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_penulis'])) {
-  echo "Akses tidak valid.";
-  return;
-}
-// Nomor identitas, nama, dan riwayat singkat wajib tersedia lengkap sebelum perubahannya ditampilkan ulang sebagai bukti
-if (isset($_POST['id'], $_POST['name'], $_POST['bio'])) {
-  echo "Perubahan penulis berhasil diterima:<br>";
-  echo "<pre>";
-  print_r(['id' => $_POST['id'], 'name' => $_POST['name'], 'bio' => $_POST['bio']]);
-  echo "</pre>";
-} else {
-  echo "Data penulis tidak lengkap.";
+// VITO: terima form ubah penulis.
+// Dibuka hanya via POST dari pages/authors/edit.php.
+// Tombol wajib: perbarui_penulis. Selain itu tolak sebagai akses tidak valid.
+require_once __DIR__ . '/../../repositories/helpers.php';
+switch (true)
+{
+  case $_SERVER['REQUEST_METHOD'] !== 'POST':
+  case !isset($_POST['perbarui_penulis']):
+    echo 'Akses tidak valid.';
+    break;
+  default:
+    $data = ['id' => post('id'), 'name' => post('name'), 'bio' => post('bio')];
+    switch (true)
+    {
+      case in_array(null, $data, true):
+        echo 'Data penulis tidak lengkap.';
+        break;
+      default:
+        echo 'Perubahan penulis berhasil diterima:<br>';
+        print_r($data);
+    }
 }

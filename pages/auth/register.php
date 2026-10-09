@@ -1,4 +1,4 @@
-<!-- Halaman pendaftaran akun: form nama, email, kata sandi, dan konfirmasi untuk membuat akun baru -->
+<!-- VITO: daftar akun, form nama surel sandi dan konfirmasi -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -10,7 +10,7 @@
 <body>
 
   <div class="auth-wrapper">
-    <!-- kartu daftarnya, gede dikit soalnya kolomnya banyak -->
+    <!-- VITO: kartu daftar lebar dengan logo dan judul -->
     <div class="auth-card">
       <div class="auth-logo">
         <span class="logo-badge">PD</span>
@@ -19,7 +19,7 @@
       <h1>Buat Akun Baru</h1>
       <p class="auth-subtitle">Daftar untuk mulai meminjam dan mengelola buku.</p>
 
-      <!-- form daftar akun, ada konfirmasi sandi biar nggak typo -->
+      <!-- VITO: form daftar dengan konfirmasi sandi anti typo -->
       <form method="" action="">
         <div class="form-group">
           <label for="name">Nama Lengkap</label>

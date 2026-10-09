@@ -1,8 +1,14 @@
 <?php
-// File ini memproses hapus penulis, menerima nomor identitas dari tautan hapus pada daftar penulis
-// Nomor identitas harus terbawa melalui alamat URL, bila kosong maka muncul pesan identitas tidak ditemukan
-if (isset($_GET['id'])) {
-  echo "Penulis dengan id " . htmlspecialchars($_GET['id']) . " berhasil dihapus.";
-} else {
-  echo "ID penulis tidak ditemukan.";
+// VITO: hapus penulis by id via query string.
+// Dibuka via GET dari pages/authors/index.php tombol Hapus.
+// Ambil id pakai get(), tampilkan pesan dengan e() agar aman.
+require_once __DIR__ . '/../../repositories/helpers.php';
+$id = get('id');
+switch (true)
+{
+  case $id === null:
+    echo 'ID penulis tidak ditemukan.';
+    break;
+  default:
+    echo 'Penulis dengan id ' . e($id) . ' berhasil dihapus.';
 }

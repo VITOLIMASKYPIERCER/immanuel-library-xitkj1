@@ -1,16 +1,23 @@
 <?php
-// File ini menangani penambahan kategori baru, menampung kiriman form Tambah Kategori dari halaman kelola kategori
-// Request diterima hanya lewat metode POST dengan penanda tambah_kategori, selebihnya akses ditolak
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['tambah_kategori'])) {
-  echo "Akses tidak valid.";
-  return;
-}
-// Kolom nama dan keterangan wajib terisi lengkap sebelum hasilnya dirangkum dan diperlihatkan kembali di layar
-if (isset($_POST['name'], $_POST['description'])) {
-  echo "Kategori baru berhasil diterima:<br>";
-  echo "<pre>";
-  print_r(['name' => $_POST['name'], 'description' => $_POST['description']]);
-  echo "</pre>";
-} else {
-  echo "Data kategori tidak lengkap.";
+// VITO: terima form tambah kategori.
+// Dibuka hanya via POST dari pages/categories/create.php.
+// Tombol wajib: simpan_kategori. Selain itu tolak sebagai akses tidak valid.
+require_once __DIR__ . '/../../repositories/helpers.php';
+switch (true)
+{
+  case $_SERVER['REQUEST_METHOD'] !== 'POST':
+  case !isset($_POST['simpan_kategori']):
+    echo 'Akses tidak valid.';
+    break;
+  default:
+    $data = ['name' => post('name'), 'description' => post('description')];
+    switch (true)
+    {
+      case in_array(null, $data, true):
+        echo 'Data kategori tidak lengkap.';
+        break;
+      default:
+        echo 'Kategori baru berhasil diterima:<br>';
+        print_r($data);
+    }
 }

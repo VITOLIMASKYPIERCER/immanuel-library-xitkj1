@@ -1,4 +1,4 @@
-<!-- Halaman ubah kategori: form terisi nama dan deskripsi kategori terpilih ke actions/categories/update.php -->
+<!-- VITO: ubah kategori, form terisi ke update -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,10 +9,11 @@
 </head>
 <body>
   <?php
-  // Halaman ubah kategori: form terisi otomatis sesuai ID yang dipilih
-  // Data kategori dimuat dari getCategory() agar nama dan deskripsi langsung tampil di form
-  require '../../repositories/category-repository.php';
-  $category = getCategory();
+  // VITO: muat satu kategori by id untuk mengisi form edit.
+  // VITO: helpers dipakai untuk e() dan get() id dari query.
+  require_once '../../repositories/category-repository.php';
+  require_once '../../repositories/helpers.php';
+  $kategori = getCategory(get('id', 1));
   ?>
   <div class="app-shell">
   <?php require '../../components/admin/sidebar.php'; ?>
@@ -21,23 +22,23 @@
     <?php $pageTitle = 'Edit Kategori'; $pageSubtitle = 'Perbarui data kategori'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
-        <!-- form betulin kategori, namanya tinggal ganti -->
+        <!-- VITO: form bawa id tersembunyi, tombol batal dan simpan perubahan -->
         <form method="POST" action="../../actions/categories/update.php">
-          <input type="hidden" name="id" value="<?= $category['id'] ?>">
+          <input type="hidden" name="id" value="<?= e($kategori['id']) ?>">
           <div class="form-card">
             <div class="form-section-title">Data Kategori</div>
             <div class="form-group">
               <label for="name">Nama Kategori</label>
-              <input type="text" id="name" name="name" value="<?= $category['name'] ?>">
+              <input type="text" id="name" name="name" value="<?= e($kategori['nama']) ?>">
             </div>
             <div class="form-group">
               <label for="description">Deskripsi</label>
-              <textarea id="description" name="description" rows="3"><?= $category['description'] ?></textarea>
+              <textarea id="description" name="description" rows="3"><?= e($kategori['deskripsi']) ?></textarea>
             </div>
 
             <div class="form-actions">
               <a href="index.php" class="btn btn-outline">Batal</a>
-              <button type="submit" name="ubah_kategori" class="btn btn-primary">Simpan Perubahan</button>
+              <button type="submit" name="perbarui_kategori" class="btn btn-primary">Simpan Perubahan</button>
             </div>
           </div>
         </form>

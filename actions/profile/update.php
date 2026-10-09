@@ -1,16 +1,23 @@
 <?php
-// File ini mengurus pembaruan profil sendiri, menerima kiriman form Ubah Profil dari halaman profil
-// Request hanya diterima lewat metode POST dengan penanda ubah_profil, selebihnya akses dianggap tidak sah
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['ubah_profil'])) {
-  echo "Akses tidak valid.";
-  return;
-}
-// Kolom nama, surel, telepon, alamat, dan riwayat singkat wajib terisi lengkap sebelum hasilnya ditampilkan sebagai konfirmasi
-if (isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['address'], $_POST['bio'])) {
-  echo "Perubahan profil berhasil diterima:<br>";
-  echo "<pre>";
-  print_r(['name' => $_POST['name'], 'email' => $_POST['email'], 'phone' => $_POST['phone'], 'address' => $_POST['address'], 'bio' => $_POST['bio']]);
-  echo "</pre>";
-} else {
-  echo "Data profil tidak lengkap.";
+// VITO: terima form ubah profil saya.
+// Dibuka hanya via POST dari pages/profile/edit.php.
+// Tombol wajib: perbarui_profil. Selain itu tolak sebagai akses tidak valid.
+require_once __DIR__ . '/../../repositories/helpers.php';
+switch (true)
+{
+  case $_SERVER['REQUEST_METHOD'] !== 'POST':
+  case !isset($_POST['perbarui_profil']):
+    echo 'Akses tidak valid.';
+    break;
+  default:
+    $data = ['name' => post('name'), 'email' => post('email'), 'phone' => post('phone'), 'address' => post('address'), 'bio' => post('bio')];
+    switch (true)
+    {
+      case in_array(null, $data, true):
+        echo 'Data profil tidak lengkap.';
+        break;
+      default:
+        echo 'Perubahan profil berhasil diterima:<br>';
+        print_r($data);
+    }
 }

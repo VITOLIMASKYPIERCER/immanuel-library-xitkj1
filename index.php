@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-  <!-- Beranda publik, memuat header landing tepat di bawah baris ini -->
+  <!-- VITO: kepala landing dimuat di bawah baris ini -->
   <?php require_once 'components/landing/header.php'; ?>
-  <!-- Bagian hero: judul utama dengan 2 tombol menuju halaman login dan katalog buku -->
+  <!-- VITO: hero berisi judul utama dan dua tombol aksi -->
   <section class="hero">
     <div class="hero-text">
       <span class="hero-badge">SISTEM MANAJEMEN PERPUSTAKAAN</span>
@@ -37,7 +37,7 @@
     </div>
   </section>
 
-  <!-- Bagian statistik: 4 angka ringkasan koleksi, dilanjut 3 kartu penjelasan fitur utama -->
+  <!-- VITO: statistik ringkasan lalu tiga kartu fitur unggulan -->
   <section class="section">
     <div class="stats-grid">
       <div class="stat-card">
@@ -93,7 +93,7 @@
       </div>
     </div>
   </section>
-  <!-- Penutup beranda, memuat footer landing tepat di bawah baris ini -->
+  <!-- VITO: kaki landing dimuat di bawah baris ini -->
   <?php require_once 'components/landing/footer.php'; ?>
 </body>
 </html>

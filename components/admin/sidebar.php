@@ -1,11 +1,12 @@
-<!-- Navigasi samping admin, dimuat bersama pada seluruh 14 halaman admin -->
+<!-- VITO: navigasi samping admin, dipakai semua halaman manajemen -->
+<!-- Letak file: components/admin/sidebar.php, dimuat di dalam .app-shell -->
 <aside class="app-sidebar">
   <div class="brand">
     <span class="logo-badge">PD</span>
     Perpustakaan Digital
   </div>
   <div class="nav-group-label">Menu Utama</div>
-  <!-- Daftar tautan ke Beranda, Buku, Kategori, Penulis, Pengguna, dan Profil Saya -->
+  <!-- VITO: daftar menu utama Beranda sampai Profil Saya, ikon dan href sama persis -->
   <nav>
     <a href="/index.php" class=""><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg> Beranda</a>
     <a href="/pages/books/index.php" class=""><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg> Buku</a>
