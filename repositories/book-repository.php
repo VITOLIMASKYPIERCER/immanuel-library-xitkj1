@@ -1,5 +1,7 @@
 <?php
+// Data contoh buku dikumpulin di file ini, jadi katalog, detail, sama form edit tinggal manggil fungsinya tanpa nulis array manual
 
+// getBooks balikin 5 data buku sekaligus, tiap item ada id, judul, kategori, tahun, stok, dan daftar penulis. Dipakai di halaman index terus di-loop jadi baris tabel
 function getBooks() {
   return [
     ["id" => 1, "title" => "Laskar Pelangi", "category" => "Fiksi", "year" => 2005, "stock" => 12, "authors" => ["Andrea Hirata"]],
@@ -10,6 +12,7 @@ function getBooks() {
   ];
 }
 
+// getBook balikin satu buku lengkap (Antologi Rasa Nusantara) sama isbn, deskripsi, category_id dan author_ids. Dipakai di show dan edit biar formnya keisi otomatis
 function getBook() {
   return [
     "id" => 5,

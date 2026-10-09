@@ -1,5 +1,7 @@
 <?php
+// Data contoh penulis ditaruh di file ini, jadi tabel penulis sama checkbox di form buku bacanya dari sini
 
+// getAuthors balikin 5 penulis sekaligus, tiap orang ada id, nama, bio, dan total_books. Dipakai di index penulis dan checkbox form buku
 function getAuthors() {
   return [
     ["id" => 1, "name" => "Andrea Hirata", "bio" => "Penulis asal Belitung, dikenal lewat novel Laskar Pelangi.", "total_books" => 1],
@@ -10,6 +12,7 @@ function getAuthors() {
   ];
 }
 
+// getAuthor balikin satu penulis (Andrea Hirata) biar form edit keisi otomatis. Tanpa parameter biar simpel
 function getAuthor() {
   return ["id" => 1, "name" => "Andrea Hirata", "bio" => "Penulis asal Belitung, dikenal lewat novel Laskar Pelangi.", "total_books" => 1];
 }

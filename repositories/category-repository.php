@@ -1,5 +1,7 @@
 <?php
+// Data contoh kategori ada di file ini, jadi tabel kategori sama dropdown di form buku ambilnya dari satu tempat
 
+// getCategories balikin 4 kategori sekaligus, tiap item ada id, nama, deskripsi, dan total_books. Dipakai di index buat tabel dan di form buku buat dropdown
 function getCategories() {
   return [
     ["id" => 1, "name" => "Fiksi", "description" => "Novel dan cerita rekaan", "total_books" => 3],
@@ -9,6 +11,7 @@ function getCategories() {
   ];
 }
 
+// getCategory balikin satu kategori (Fiksi) biar form edit langsung keisi. Sengaja tanpa parameter biar gampang dipanggil
 function getCategory() {
   return ["id" => 1, "name" => "Fiksi", "description" => "Novel dan cerita rekaan", "total_books" => 3];
 }
