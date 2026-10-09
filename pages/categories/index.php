@@ -1,3 +1,4 @@
+<!-- Halaman daftar kategori: tabel seluruh kategori dengan pencarian nama dan tombol tambah kategori -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman daftar kategori untuk pengelompokan buku
+  // Data kategori dimuat dari getCategories() agar tabel terisi saat halaman dibuka
   require '../../repositories/category-repository.php';
   $categories = getCategories();
   ?>
@@ -18,6 +21,7 @@
     <?php $pageTitle = 'Manajemen Kategori'; $pageSubtitle = 'Kelola kategori untuk mengelompokkan buku'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- Bilah alat kategori: kolom pencarian nama, tombol Cari, dan tombol Tambah Kategori -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -30,6 +34,7 @@
         </div>
 
         <div class="data-card">
+          <!-- Tabel kategori: kolom nama, deskripsi, jumlah buku, dan tombol aksi Edit serta Hapus -->
           <table class="data-table">
             <thead>
               <tr>
@@ -40,6 +45,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php // Data dari getCategories() di-loop menjadi baris tabel, tiap kategori satu baris berisi nama dan jumlah buku ?>
               <?php foreach ($categories as $category): ?>
               <tr>
                 <td>

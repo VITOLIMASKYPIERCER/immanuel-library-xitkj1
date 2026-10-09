@@ -1,3 +1,4 @@
+<!-- Halaman daftar penulis: tabel seluruh penulis dengan pencarian nama dan tombol tambah penulis -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman daftar penulis yang terdaftar di sistem
+  // Data penulis dimuat dari getAuthors() agar tabel terisi saat halaman dibuka
   require '../../repositories/author-repository.php';
   $authors = getAuthors();
   ?>
@@ -16,6 +19,7 @@
     <main class="app-main">
     <?php $pageTitle = 'Manajemen Penulis'; $pageSubtitle = 'Kelola data penulis yang terdaftar di sistem'; require '../../components/admin/topbar.php'; ?>
       <div class="app-content">
+        <!-- Bilah alat penulis: kolom pencarian nama, tombol Cari, dan tombol Tambah Penulis -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -27,6 +31,7 @@
           <a href="create.php" class="btn btn-primary">+ Tambah Penulis</a>
         </div>
         <div class="data-card">
+          <!-- Tabel penulis: kolom nama, jumlah buku, dan tombol aksi Edit serta Hapus -->
           <table class="data-table">
             <thead>
               <tr>
@@ -36,6 +41,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php // Data dari getAuthors() di-loop menjadi baris tabel, tiap penulis satu baris berisi nama dan jumlah buku ?>
               <?php foreach ($authors as $author): ?>
               <tr>
                 <td>

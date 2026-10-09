@@ -1,3 +1,4 @@
+<!-- Halaman ubah penulis: form terisi nama dan biografi penulis terpilih ke actions/authors/update.php -->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -10,6 +11,8 @@
 
 <body>
   <?php
+  // Halaman ubah penulis: form terisi otomatis sesuai ID yang dipilih
+  // Data penulis dimuat dari getAuthor() agar nama dan biografi langsung tampil di form
   require '../../repositories/author-repository.php';
   $author = getAuthor();
   ?>
@@ -20,6 +23,7 @@
       <?php $pageTitle = 'Edit Penulis'; $pageSubtitle = 'Perbarui data penulis'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form ubah penulis, isinya udah keisi tinggal benerin -->
         <form method="POST" action="../../actions/authors/update.php">
           <input type="hidden" name="id" value="<?= $author['id'] ?>">
           <div class="form-card">

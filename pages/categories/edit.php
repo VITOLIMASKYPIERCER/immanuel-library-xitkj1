@@ -1,3 +1,4 @@
+<!-- Halaman ubah kategori: form terisi nama dan deskripsi kategori terpilih ke actions/categories/update.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman ubah kategori: form terisi otomatis sesuai ID yang dipilih
+  // Data kategori dimuat dari getCategory() agar nama dan deskripsi langsung tampil di form
   require '../../repositories/category-repository.php';
   $category = getCategory();
   ?>
@@ -18,6 +21,7 @@
     <?php $pageTitle = 'Edit Kategori'; $pageSubtitle = 'Perbarui data kategori'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form betulin kategori, namanya tinggal ganti -->
         <form method="POST" action="../../actions/categories/update.php">
           <input type="hidden" name="id" value="<?= $category['id'] ?>">
           <div class="form-card">

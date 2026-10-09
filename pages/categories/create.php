@@ -1,3 +1,4 @@
+<!-- Halaman tambah kategori baru: form nama dan deskripsi yang dikirim ke actions/categories/store.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,12 +9,14 @@
 </head>
 <body>
   <div class="app-shell">
+  <?php // Sidebar admin dimuat sebagai menu navigasi samping halaman ini ?>
   <?php require '../../components/admin/sidebar.php'; ?>
 
     <main class="app-main">
     <?php $pageTitle = 'Tambah Kategori'; $pageSubtitle = 'Buat kategori baru untuk mengelompokkan buku'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form kecil buat nambah kategori, dua kolom doang -->
         <form method="POST" action="../../actions/categories/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Kategori</div>

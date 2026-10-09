@@ -1,3 +1,4 @@
+<!-- Halaman tambah penulis baru: form nama dan biografi yang dikirim ke actions/authors/store.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,12 +9,14 @@
 </head>
 <body>
   <div class="app-shell">
+  <?php // Sidebar admin dimuat sebagai menu navigasi samping halaman ini ?>
   <?php require '../../components/admin/sidebar.php'; ?>
 
     <main class="app-main">
     <?php $pageTitle = 'Tambah Penulis'; $pageSubtitle = 'Daftarkan penulis baru ke sistem'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form nambah penulis, isi nama sama bio terus simpen -->
         <form method="POST" action="../../actions/authors/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Penulis</div>
