@@ -1,3 +1,4 @@
+<!-- Halaman tambah pengguna baru: form nama, email, kata sandi, dan peran ke actions/users/store.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,12 +9,14 @@
 </head>
 <body>
   <div class="app-shell">
+  <?php // Sidebar admin dimuat sebagai menu navigasi samping halaman ini ?>
   <?php require '../../components/admin/sidebar.php'; ?>
 
     <main class="app-main">
     <?php $pageTitle = 'Tambah Pengguna'; $pageSubtitle = 'Buat akun pengguna baru beserta perannya'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form bikin akun baru, lengkapin terus gas simpen -->
         <form method="POST" action="../../actions/users/store.php">
           <div class="form-card">
             <div class="form-section-title">Data Pengguna</div>

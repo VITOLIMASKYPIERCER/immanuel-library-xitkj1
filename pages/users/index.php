@@ -1,3 +1,4 @@
+<!-- Halaman daftar pengguna: tabel seluruh akun dengan pencarian nama/email dan tombol tambah pengguna -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman daftar seluruh pengguna beserta perannya
+  // Data pengguna dimuat dari getUsers() agar tabel terisi saat halaman dibuka
   require '../../repositories/user-repository.php';
   $users = getUsers();
   ?>
@@ -18,6 +21,7 @@
     <?php $pageTitle = 'Manajemen Pengguna'; $pageSubtitle = 'Daftar seluruh pengguna beserta perannya (role)'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- Bilah alat pengguna: kolom pencarian nama atau email, tombol Cari, dan tombol Tambah Pengguna -->
         <div class="toolbar">
           <form method="" action="" class="toolbar-filters">
             <div class="search-box">
@@ -30,6 +34,7 @@
         </div>
 
         <div class="data-card">
+          <!-- daftar akunnya dibikin tabel biar jelas siapa admin siapa member -->
           <table class="data-table">
             <thead>
               <tr>
@@ -40,6 +45,7 @@
               </tr>
             </thead>
             <tbody>
+              <?php // Data dari getUsers() di-loop menjadi baris tabel, tiap pengguna satu baris berisi nama dan peran ?>
               <?php foreach ($users as $user): ?>
               <tr>
                 <td>

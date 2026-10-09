@@ -1,3 +1,4 @@
+<!-- Halaman profil saya: form data akun dan biodata pribadi yang dikirim ke actions/profile/update.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman profil pengguna saat ini: form akun dan biodata terisi otomatis
+  // Data akun dari getUser() dan data profil dari getProfile() untuk pengisian form
   require '../../repositories/user-repository.php';
   $user = getUser();
   $profile = getProfile();
@@ -19,6 +22,7 @@
     <?php $pageTitle = 'Profil Saya'; $pageSubtitle = 'Kelola data akun dan profil Anda'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form profil ganda: akun di atas, biodata di bawah -->
         <form method="POST" action="../../actions/profile/update.php">
           <div class="form-card" style="margin-bottom:20px;">
             <div class="form-section-title">Data Akun</div>

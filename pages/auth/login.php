@@ -1,3 +1,4 @@
+<!-- Halaman masuk akun: form email dan kata sandi untuk autentikasi, tautan ke halaman daftar -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,6 +10,7 @@
 <body>
 
   <div class="auth-wrapper">
+    <!-- kartu loginnya, dibungkus rapi biar fokus -->
     <div class="auth-card">
       <div class="auth-logo">
         <span class="logo-badge">PD</span>
@@ -17,6 +19,7 @@
       <h1>Selamat Datang Kembali</h1>
       <p class="auth-subtitle">Masuk untuk mengelola koleksi buku perpustakaan.</p>
 
+      <!-- kolom email sama sandi, isi terus pencet masuk -->
       <form method="" action="">
         <div class="form-group">
           <label for="email">Email</label>

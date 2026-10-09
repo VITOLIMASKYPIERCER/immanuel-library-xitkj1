@@ -1,3 +1,4 @@
+<!-- Halaman ubah pengguna: form terisi nama, email, dan peran pengguna terpilih ke actions/users/update.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +9,8 @@
 </head>
 <body>
   <?php
+  // Halaman ubah pengguna: form terisi otomatis sesuai ID yang dipilih
+  // Data pengguna dimuat dari getUser() agar nama, email, dan peran tampil di form
   require '../../repositories/user-repository.php';
   $user = getUser();
   ?>
@@ -18,6 +21,7 @@
     <?php $pageTitle = 'Edit Pengguna'; $pageSubtitle = 'Perbarui data dan role pengguna'; require '../../components/admin/topbar.php'; ?>
 
       <div class="app-content">
+        <!-- form ganti data user, pelan-pelan aja ngisinya -->
         <form method="POST" action="../../actions/users/update.php">
           <input type="hidden" name="id" value="<?= $user['id'] ?>">
           <div class="form-card">
